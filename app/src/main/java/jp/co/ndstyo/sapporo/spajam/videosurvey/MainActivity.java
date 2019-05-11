@@ -1,5 +1,6 @@
 package jp.co.ndstyo.sapporo.spajam.videosurvey;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        final String userName = intent.getStringExtra("USERNAME");
+
         SurveyListener listener = SurveyListener.getInstance();
         listener.setCinemaStatusChangeCallback(SurveyListener.DEMO_CINEMA_1, new SurveyCallback() {
             @Override
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Vote vote = new Vote("hanako", 100);
+                Vote vote = new Vote( userName, 100);
                 SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, vote);
             }
         });
