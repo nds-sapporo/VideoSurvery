@@ -8,8 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.List;
+
+import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.MatchingCallback;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.SurveyCallback;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.SurveyListener;
+import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.User;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.Vote;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.VoteCallback;
 
@@ -48,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Vote vote = new Vote( userName, 100);
                 SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, vote);
+            }
+        });
+        Button button = findViewById(R.id.imageViewB);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SurveyListener.getInstance().findMatchingUsers(SurveyListener.DEMO_CINEMA_1, "taro", new MatchingCallback() {
+                    @Override
+                    public void callback(List<User> matchingUsers) {
+                        for (User user : matchingUsers) {
+                            Log.i("Matching Result:", user.getUserName());
+                        }
+                    }
+                });
             }
         });
     }
