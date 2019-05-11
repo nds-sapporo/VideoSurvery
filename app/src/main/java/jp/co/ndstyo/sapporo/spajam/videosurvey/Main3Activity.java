@@ -4,11 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +21,7 @@ import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.User;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.Vote;
 import jp.co.ndstyo.sapporo.spajam.videosurvey.backend.VoteCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity {
 
     Context context;
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
         context = this.getApplicationContext();
 
@@ -49,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         SurveyListener listener = SurveyListener.getInstance();
 
         // 映像ステータスに対するコールバック
-        listener.setCinemaStatusChangeCallback(SurveyListener.DEMO_CINEMA_1, new SurveyCallback() {
+        listener.setCinemaStatusChangeCallback(SurveyListener.DEMO_CINEMA_3, new SurveyCallback() {
             @Override
             public void callback(String status) {
                 // 待ち受け画面へ遷移
                 if( status.equals(SurveyListener.DEMO_STATUS_next)) {
-                    Intent intent = new Intent(MainActivity.this, WaitActivity.class);
+                    Intent intent = new Intent(Main3Activity.this, WaitActivity.class);
                     intent.putExtra("USERNAME", userName);
                     intent.putExtra("MONEY", money);
                     intent.putExtra("CAMPAIGN", campaign);
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 投票サマリに対するコールバック
-        listener.setVoteChangeCallback(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, new VoteCallback() {
+        listener.setVoteChangeCallback(SurveyListener.DEMO_CINEMA_3, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, new VoteCallback() {
             @Override
             public void callback(int count, int money) {
                 TextView textViewCountA = findViewById(R.id.textViewCountA);
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 textViewMoneyA.setText(String.valueOf(money));
             }
         });
-        listener.setVoteChangeCallback(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_2, new VoteCallback() {
+        listener.setVoteChangeCallback(SurveyListener.DEMO_CINEMA_3, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_2, new VoteCallback() {
             @Override
             public void callback(int count, int money) {
                 TextView textViewCountB = findViewById(R.id.textViewCountB);
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( money >= 100 ) {
                     Vote vote = new Vote(userName, 100);
-                    SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, vote);
+                    SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_3, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_1, vote);
                     money = money - 100;
                     // 現在のクレジットの表示
                     TextView textViewMoney = findViewById(R.id.textViewMoney);
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     if (campaign == 0) {
-                        new AlertDialog.Builder(MainActivity.this)
+                        new AlertDialog.Builder(Main3Activity.this)
                                 .setTitle("クレジットが不足しています")
                                 .setMessage("新規ユーザーには500クレジットプレゼントキャンペーン実施中！クレジットを受け取りますか？")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( money >= 100 ) {
                     Vote vote = new Vote(userName, 100);
-                    SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_1, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_2, vote);
+                    SurveyListener.getInstance().vote(SurveyListener.DEMO_CINEMA_3, SurveyListener.DEMO_BRANCH_1, SurveyListener.DEMO_CHOICE_2, vote);
                     money = money - 100;
                     // 現在のクレジットの表示
                     TextView textViewMoney = findViewById(R.id.textViewMoney);
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     if (campaign == 0) {
-                        new AlertDialog.Builder(MainActivity.this)
+                        new AlertDialog.Builder(Main3Activity.this)
                                 .setTitle("クレジットが不足しています")
                                 .setMessage("新規ユーザーには500クレジットプレゼントキャンペーン実施中！クレジットを受け取りますか？")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

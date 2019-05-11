@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Main3Activity">
+
 
 
     <LinearLayout
@@ -44,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:layout_marginBottom="48dp"
-            android:text="どっちでプロポーズ？"
+            android:text="彼女は・・"
             android:textSize="24dp"
             android:textAlignment="center" />
 
@@ -63,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="花で"
+                    android:text="実はう○こ好き"
                     android:textSize="24dp"
                     android:textAlignment="center" />
 
@@ -75,7 +76,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitStart"
                     android:textAlignment="center"
-                    app:srcCompat="@drawable/hana" />
+                    app:srcCompat="@drawable/unko_ok" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="う○こで"
+                    android:text="怒る"
                     android:textSize="24dp"
                     android:textAlignment="center" />
 
@@ -151,7 +152,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitStart"
                     android:textAlignment="center"
-                    app:srcCompat="@drawable/unko" />
+                    app:srcCompat="@drawable/unko_ng" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,4 +209,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>

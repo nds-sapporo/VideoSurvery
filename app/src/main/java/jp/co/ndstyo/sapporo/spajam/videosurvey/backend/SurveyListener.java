@@ -20,11 +20,19 @@ public class SurveyListener {
 
     public static final String DEMO_CINEMA_1 = "cinema_id_a";
 
+    public static final String DEMO_CINEMA_2 = "cinema_id_b";
+
+    public static final String DEMO_CINEMA_3 = "cinema_id_c";
+
     public static final String DEMO_BRANCH_1 = "branch_id";
 
     public static final String DEMO_CHOICE_1 = "a";
 
     public static final String DEMO_CHOICE_2 = "b";
+
+    public static final String DEMO_STATUS_vote = "vote";
+
+    public static final String DEMO_STATUS_next = "end";
 
     private DatabaseReference database;
 
@@ -115,10 +123,16 @@ public class SurveyListener {
                         users.retainAll(summary.get(key));
                     }
                 }
+
+                // usersが無課金の場合はnullになるので、matchUserを探さずに抜ける
                 List<User> matchUsers = new ArrayList<>();
-                for (String user : users) {
-                    matchUsers.add(new User(user));
+
+                if( users != null ) {
+                    for (String user : users) {
+                        matchUsers.add(new User(user));
+                    }
                 }
+
                 callback.callback(matchUsers);
             }
 

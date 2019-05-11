@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity  extends AppCompatActivity {
 
@@ -20,10 +21,18 @@ public class LoginActivity  extends AppCompatActivity {
             public void onClick(View v) {
                 // input check
                 EditText editText = (EditText) findViewById(R.id.editTextName);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                if( editText.getText().toString().equals("") == true ) {
+                    Toast.makeText(getApplicationContext(), "名前を入力してください", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent(LoginActivity.this, WaitActivity.class);
                 String userName = editText.getText().toString();
                 intent.putExtra("USERNAME", userName);
+                intent.putExtra("MONEY", 1000);
+                Toast.makeText(getApplicationContext(), "1000クレジットを取得しました", Toast.LENGTH_LONG).show();
                 startActivity(intent);
+                finish();
             }
         });
     }
